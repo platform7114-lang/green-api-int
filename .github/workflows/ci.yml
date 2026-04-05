@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Checkout
@@ -22,6 +25,7 @@ jobs:
       - name: Push image
         run: |
           docker push ghcr.io/platform7114-lang/green-api-int:${{ github.sha }}
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
