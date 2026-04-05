@@ -21,6 +21,8 @@ spec:
         volumeMounts:
           - name: nginx-config
             mountPath: /etc/nginx/conf.d
+        imagePullSecrets:
+        - name: ghcr-secret
         ports:
         - containerPort: 80
       volumes:
