@@ -33,11 +33,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set kubeconfig
-        run: |
-          mkdir -p ~/.kube
-          echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
-
       - name: Deploy
         run: |
           kubectl apply -f k8s/
