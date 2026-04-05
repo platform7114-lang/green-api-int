@@ -2,4 +2,4 @@ Dockerfile
 README.md
 k8s/
 infra/
-.gitignore
+.git*
