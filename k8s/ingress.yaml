@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: greenapi-int-ingress
+  annotations:
+    cert-manager.io/issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - fht-bus.ru
+    secretName: fht-bus.ru-tls
+  rules:
+  - host: fht-bus.ru
+    http:
+      paths:
+      - path: /green-api-int
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-greenapi-int-clusterip-service
+            port:
+              number: 80

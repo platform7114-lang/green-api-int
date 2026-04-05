@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greenapi-int-deployment
+  labels:
+    app: nginx-greenapi-int
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-greenapi-int
+  template:
+    metadata:
+      labels:
+        app: nginx-greenapi-int
+    spec:
+      containers:
+      - name: app
+        image: retry4g41n/green-api-int
+        volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx/conf.d
+        ports:
+        - containerPort: 80
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-config
